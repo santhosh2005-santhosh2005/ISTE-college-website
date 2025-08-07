@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="website icon" type="image/jpeg" href="images/iste logo.jpeg">
+    <!-- Google Fonts for Montserrat (headings) and Roboto (body, nav) -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:700,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    body {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  background: #111115;
+  color: #fff;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Navigation links, menu icons */
+.nav-links a, .menu-icon {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+  font-weight: 700;
+}
+
+/* Headings and dividers use Montserrat */
+.container1 h1,
+.container1 h2,
+.divider,
+.slot h2 {
+  font-family: 'Montserrat', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Motto italic style */
+.container1 .motto {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-style: italic;
+}
+
+
+        /* Interactive Particle Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: transparent;
+        }
+
+        .navbar {
+  background-color: #171717;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+.navbar:hover {
+  background-color: #2c2c2c;
+}
+
+.navbar .logo {
+  height: 60px;
+  width: 60px; /* Ensures circular aspect ratio */
+  border-radius: 50%; /* Makes the container circular */
+  background: #fff; /* Change to your club's highlight color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for highlight */
+  transition: transform 0.3s;
+  overflow: hidden; /* Ensures the logo stays inside the circle */
+}
+
+.navbar .logo:hover {
+  transform: scale(1.1);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  transition: max-height 0.3s ease-out;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #c4beb4;
+  font-size: 1.5rem;
+}
+
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  color: white;
+}
+
+.menu-icon span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+/* end */
+
+/* body */
+        .container1 {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.1);
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .container1:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+        }
+
+        .container1 h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .container1 h2 {
+            font-size: 2rem;
+            margin: 30px 0 15px;
+            color: #ffffff;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .container1 p {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin: 15px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .container1 .motto {
+            font-weight: 600;
+            font-style: italic;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+
+        .container1 a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .container1 a:hover {
+            color: #ffea00;
+            text-decoration: underline;
+        }
+
+        .container1.visible h1,
+        .container1.visible h2,
+        .container1.visible p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container1 p:nth-child(2) { transition-delay: 0.2s; }
+        .container1 p:nth-child(3) { transition-delay: 0.4s; }
+        .container1 h2:nth-child(5) { transition-delay: 0.6s; }
+        .container1 p.motto { transition-delay: 0.8s; }
+
+        .divider {
+            width: 80%;
+            height: 2px;
+            background: #ffffff;
+            margin: 30px auto;
+            opacity: 0.5;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 30px;
+            padding: 40px;
+            background: transparent;
+            margin: 20px 0;
+        }
+
+        .slot {
+            background: rgba(20, 20, 20, 0.1); /* Transparent for particle visibility */
+            width: 400px;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .slot:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+            border-color: #ffd700;
+        }
+
+        .slot .icon img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .slot .icon img:hover {
+            transform: scale(1.1);
+            filter: grayscale(0%) drop-shadow(0 0 5px #ffd700);
+        }
+
+        .slot h2 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .slot p {
+            color: #cccccc;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .social-link img {
+            width: 35px;
+            height: 35px;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .social-link img:hover {
+            transform: scale(1.2);
+            filter: grayscale(0%) drop-shadow(0 0 5px #ffd700);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            background: rgba(20, 20, 20, 0.95);
+            color: #ffffff;
+            flex-wrap: wrap;
+            box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1);
+        }
+
+        .footer div {
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .f2 {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: #1a1a1a;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                padding: 20px 0;
+                z-index: 99;
+                box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px 0;
+                width: 100%;
+                text-align: center;
+                color: #ffffff;
+            }
+
+            .navbar .logo {
+                height: 40px;
+            }
+
+            .container1 {
+                margin: 20px;
+                padding: 20px;
+                background: rgba(20, 20, 20, 0.1);
+                backdrop-filter: blur(5px);
+            }
+
+            .container {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .slot {
+                width: 100%;
+                max-width: 350px;
+                margin: 10px auto;
+            }
+
+            .slot .icon img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        .dropdown {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  content: "";
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #222;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  top: 100%;
+  left: 0;
+  width: 200px;
+  z-index: 1000;
+}
+
+.dropdown-menu li {
+  padding: 10px 15px;
+}
+
+.dropdown-menu a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  z-index: 1000;
+}
+
+.dropdown-menu a:hover {
+  background-color: #c4beb4;
+  color: black !important;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.site-title {
+  font-family: 'Montserrat', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0576b9;      /* ISTE blue */
+  margin-left: 14px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  text-shadow: 0 2px 14px rgba(5, 118, 185, 0.10); /* optional glow */
+}
+
+    </style>
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    <nav class="navbar">
+        <a href="index.html" class="brand">
+  <img src="images/iste logo 2.jpg" alt="Club Logo" class="logo" />
+  <span class="site-title">ISTE PESCE</span>
+</a>
+        <div class="menu-icon" id="menu-icon">
+            <span id="rotate_1"></span>
+            <span id="hide_1"></span>
+            <span id="hide_2"></span>
+            <span id="rotate_2"></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="event.html">Event</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Student Chapters</a>
+                <ul class="dropdown-menu">
+                    <li><a href="istewings.html">ISTE WINGS</a></li>
+                    <li><a href="istearcs.html">ISTE ARCS</a></li>
+                </ul>
+            </li>
+            <li><a href="our_team.html">Our Team</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container1">
+        <h1>About Us</h1>
+        <p>
+            Established in 2016, ISTE PESCE stands as a distinguished consortium of
+            visionary technologists and adept coders. United by an unwavering
+            commitment to technological advancement and innovation, we endeavor to
+            develop avant-garde solutions that streamline and enrich quotidian
+            experiences—empowering the forthcoming cadre of trailblazers to
+            architect the future with ingenuity and excellence.
+        </p>
+        <p>
+            Our club embodies a center of innovation and technical excellence,
+            uniting skilled individuals to lead pioneering projects, explore
+            emerging technologies, and develop solutions with tangible impact. We
+            are dedicated to fostering collaboration and knowledge sharing, creating
+            an environment where innovative ideas are nurtured and transformed into
+            meaningful, transformative outcomes.
+        </p>
+        <div class="divider"></div>
+        <h2>Our Motto</h2>
+        <p class="motto">
+            “Forge from Fundamentals, Excel Beyond.” Turning core knowledge into
+            limitless innovation.
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="slot">
+            <div class="icon">
+                <img src="images/mainimages/icons8-eye-50.png" alt="Vision Icon">
+            </div>
+            <h2>Our Vision</h2>
+            <p>
+                At ISTE, we cultivate a culture of seamless collaboration that
+                transcends traditional silos, fostering a cohesive and agile
+                ecosystem. This philosophy enhances mutual trust, accelerates
+                resolution of critical challenges, and optimizes the management of
+                unforeseen tasks—collectively driving heightened productivity and
+                pioneering innovation within our tech community.
+            </p>
+        </div>
+        <div class="slot">
+            <div class="icon">
+                <img src="images/mainimages/icons8-mission-50.png"alt="Mission Icon">
+            </div>
+            <h2>Our Mission</h2>
+            <p>
+                Our mission is to foster student interest in development and
+                operations, enhance their technical and development skills, and
+                encourage project-building and participation in competitions. We aim
+                to cultivate leadership qualities, empowering students to become
+                confident and respectful members of society.
+            </p>
+        </div>
+    </div>
+
+    <div class="container1">
+        <p>
+            Attracting innovators, igniting passions, shaping futures.
+        </p>
+        <h2>PESCE ISTE</h2>
+       
+        <div class="divider"></div>
+        <div class="social-link">
+            <a href="https://www.instagram.com/pesce.iste/">
+                <img src="https://cdn.worldvectorlogo.com/logos/instagram-2016-5.svg" alt="Instagram">
+            </a>
+        </div>
+        <div class="social-link">
+            <a href="https://www.linkedin.com/in/iste-pesce-054b01328">
+                <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" alt="LinkedIn">
+            </a>
+        </div>
+        <div class="social-link">
+           <a href="mailto:@gmail.com" target="_blank" class="social-link">
+          <img src="https://cdn.worldvectorlogo.com/logos/gmail-icon.svg" alt="Gmail" />
+        </a>
+        </div>
+        <p>
+            Empowering talents, fostering growth, inspiring excellence.
+        </p>
+    </div>
+
+    <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <p>&copy; 2025 ISTE PESCE. All rights reserved.</p>
+    </div>
+    <!--<div class="footer-links">
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      |
+      <a href="/terms-of-service.html">Terms of Service</a>
+      |
+      <a href="mailto:iste@pesce.ac.in">Contact</a>
+    </div>-->
+    </footer>
+
+    <script>
+        // Menu toggle functionality
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuIcon = document.getElementById("menu-icon");
+            const navLinks = document.getElementById("nav-links");
+            const rotate_1 = document.getElementById('rotate_1');
+            const rotate_2 = document.getElementById('rotate_2');
+            const hide_1 = document.getElementById('hide_1');
+            const hide_2 = document.getElementById('hide_2');
+
+            menuIcon.addEventListener("click", function () {
+                navLinks.classList.toggle("show");
+                if (navLinks.classList.contains("show")) {
+                    rotate_1.style.transform = "rotate(45deg) translate(5px, 5px)";
+                    rotate_2.style.transform = "rotate(-45deg) translate(8px, -8px)";
+                    hide_1.style.opacity = "0";
+                    hide_2.style.opacity = "0";
+                } else {
+                    rotate_1.style.transform = "rotate(0deg)";
+                    rotate_2.style.transform = "rotate(0deg)";
+                    hide_1.style.opacity = "1";
+                    hide_2.style.opacity = "1";
+                }
+            });
+
+            // Intersection Observer for text animation
+            const containers = document.querySelectorAll('.container1');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            containers.forEach(container => observer.observe(container));
+        });
+
+        // Enhanced Black Particle Animation with Gold Light Effect
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particlesArray = [];
+        const numberOfParticles = 100;
+        let goldEffect = { active: false, x: 0, y: 0, radius: 0, opacity: 0.8 };
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 5 + 2;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.opacity = Math.random() * 0.6 + 0.4;
+                this.isGold = false;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+                // Apply gold effect to nearby particles
+                if (goldEffect.active) {
+                    const dx = this.x - goldEffect.x;
+                    const dy = this.y - goldEffect.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < goldEffect.radius) {
+                        this.isGold = true;
+                    } else {
+                        this.isGold = false;
+                    }
+                } else {
+                    this.isGold = false;
+                }
+            }
+            draw() {
+                ctx.fillStyle = this.isGold ? `rgba(255, 215, 0, ${this.opacity})` : `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function connectParticles() {
+            for (let i = 0; i < particlesArray.length; i++) {
+                for (let j = i + 1; j < particlesArray.length; j++) {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 120) {
+                        ctx.strokeStyle = particlesArray[i].isGold || particlesArray[j].isGold 
+                            ? `rgba(255, 215, 0, ${1 - distance / 120})` 
+                            : `rgba(255, 255, 255, ${1 - distance / 120})`;
+                        ctx.lineWidth = 1.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            connectParticles();
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            if (goldEffect.active) {
+                goldEffect.radius += 5;
+                goldEffect.opacity -= 0.02;
+                if (goldEffect.opacity <= 0 || goldEffect.radius > 300) {
+                    goldEffect.active = false;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        canvas.addEventListener('mousemove', (event) => {
+            for (let i = 0; i < 4; i++) {
+                const particle = new Particle();
+                particle.x = event.x;
+                particle.y = event.y;
+                particle.size = Math.random() * 7 + 3;
+                particle.opacity = 0.8;
+                particlesArray.push(particle);
+            }
+        });
+
+        canvas.addEventListener('click', (event) => {
+            goldEffect = {
+                active: true,
+                x: event.x,
+                y: event.y,
+                radius: 50,
+                opacity: 0.8
+            };
+            for (let i = 0; i < 6; i++) {
+                const particle = new Particle();
+                particle.x = event.x;
+                particle.y = event.y;
+                particle.size = Math.random() * 9 + 4;
+                particle.opacity = 0.9;
+                particle.isGold = true;
+                particlesArray.push(particle);
+            }
+        });
+
+        canvas.addEventListener('touchstart', (event) => {
+            const touch = event.touches[0];
+            goldEffect = {
+                active: true,
+                x: touch.clientX,
+                y: touch.clientY,
+                radius: 50,
+                opacity: 0.8
+            };
+            for (let i = 0; i < 6; i++) {
+                const particle = new Particle();
+                particle.x = touch.clientX;
+                particle.y = touch.clientY;
+                particle.size = Math.random() * 9 + 4;
+                particle.opacity = 0.9;
+                particle.isGold = true;
+                particlesArray.push(particle);
+            }
+        });
+    </script>
+</body>
+</html>

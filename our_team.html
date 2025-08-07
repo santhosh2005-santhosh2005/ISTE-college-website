@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our Team</title>
+    <link rel="icon" href="images/iste logo.jpeg" type="image/jpeg" />
+
+    <!-- Google Fonts for Montserrat and Roboto -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #000;
+        color: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+      header,
+      main,
+      footer {
+        position: relative;
+        background-color: transparent;
+      }
+
+      .navbar {
+        background-color: #171717;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        position: relative;
+        transition: background-color 0.3s ease;
+        z-index: 2;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+      }
+      .navbar:hover {
+        background-color: #2c2c2c;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .logo {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        background: #fff;
+        object-fit: cover;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.09);
+        border: 2.5px solid #c4beb4;
+        transition: transform 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .logo:hover {
+        transform: scale(1.1);
+      }
+      .site-title {
+        font-family: "Montserrat", Arial, "Helvetica Neue", Helvetica,
+          sans-serif;
+        font-weight: 900;
+        font-size: 1.4rem;
+        color: #0576b9;
+        letter-spacing: 1.2px;
+        white-space: nowrap;
+        text-shadow: 0 2px 14px rgba(5, 118, 185, 0.15);
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+      }
+      .nav-links li {
+        position: relative;
+      }
+      .nav-links a {
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 7px 0;
+        display: inline-block;
+        font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+        user-select: none;
+        transition: color 0.3s, font-size 0.3s;
+        cursor: pointer;
+      }
+      .nav-links a:hover,
+      .nav-links a:focus {
+        color: #c4beb4;
+        font-size: 1.55rem;
+        outline: none;
+      }
+      .dropdown {
+        position: relative;
+        cursor: pointer;
+      }
+      .dropdown-toggle::after {
+        content: none;
+      }
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: rgba(34, 34, 34, 0.96);
+        backdrop-filter: blur(10px);
+        list-style: none;
+        padding: 10px 0;
+        margin-top: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.28);
+        top: 100%;
+        left: 0;
+        width: 200px;
+        z-index: 1100;
+        overflow: hidden;
+      }
+      .dropdown-menu li {
+        padding: 0;
+      }
+      .dropdown-menu a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 12px 20px;
+        transition: background 0.3s, color 0.3s, padding-left 0.3s;
+        font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+        font-weight: 500;
+      }
+      .dropdown-menu a:hover,
+      .dropdown-menu a:focus {
+        background: #c4beb4;
+        color: #222 !important;
+        padding-left: 26px;
+        outline: none;
+      }
+      .dropdown:hover .dropdown-menu,
+      .dropdown:focus-within .dropdown-menu {
+        display: block;
+      }
+      .menu-icon {
+        display: none;
+        margin-left: 12px;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+        color: white;
+        user-select: none;
+        position: relative;
+        width: 30px;
+        height: 21px;
+      }
+      .menu-icon span {
+        display: block;
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: all 0.3s;
+        position: absolute;
+      }
+      #hide_1 {
+        top: 0;
+      }
+      #rotate_1 {
+        top: 9px;
+      }
+      #rotate_2 {
+        top: 9px;
+      }
+      #hide_2 {
+        top: 18px;
+      }
+
+      @media (max-width: 768px) {
+        .menu-icon {
+          display: flex;
+        }
+        .nav-links {
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 100%;
+          background-color: rgba(34, 34, 34, 0.95);
+          backdrop-filter: blur(10px);
+          flex-direction: column;
+          align-items: center;
+          max-height: 0;
+          overflow: hidden;
+          gap: 0;
+          padding: 0;
+          transition: max-height 0.5s ease-in-out;
+          display: flex;
+        }
+        .nav-links.open {
+          max-height: 400px;
+          padding-bottom: 10px;
+          gap: 30px;
+        }
+        .nav-links a {
+          width: 100%;
+          padding: 15px 0;
+          text-align: center;
+        }
+        .dropdown-menu {
+          position: static;
+          width: 100%;
+          max-height: none;
+          padding-left: 20px;
+          margin-top: 0;
+          background-color: rgba(44, 44, 44, 0.95);
+          border-radius: 0;
+          box-shadow: none;
+        }
+      }
+
+      #main,
+      #head {
+        font-family: "Montserrat", Arial, "Helvetica Neue", Helvetica,
+          sans-serif;
+        font-weight: 900;
+        font-size: 2.6rem;
+        color: #fff;
+        text-align: center;
+        margin: 40px auto 20px auto;
+        letter-spacing: 1.2px;
+        user-select: none;
+      }
+
+      .workshops,
+      .workshops-main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 20px 5%;
+      }
+      .workshop-slot,
+      .workshop-slot-main {
+        background-color: rgba(196, 190, 180, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        margin: 10px;
+        width: 280px;
+        padding: 20px 10px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+        position: relative;
+      }
+      .workshop-slot:hover,
+      .workshop-slot-main:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 50px rgba(196, 190, 180, 0.3);
+      }
+      .workshop-slot img,
+      .workshop-slot-main img {
+        width: 140px;
+        height: 140px;
+        border: 4px solid #c4beb4;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+      .workshop-slot h3,
+      .workshop-slot-main h3 {
+        margin: 10px 0;
+        font-size: 1.5rem;
+        color: #ffffff;
+        font-family: "Montserrat", Arial, "Helvetica Neue", Helvetica,
+          sans-serif;
+        font-weight: 700;
+      }
+      .workshop-slot p,
+      .workshop-slot-main p {
+        font-size: 1rem;
+        color: #c4beb4;
+        letter-spacing: 1px;
+        font-weight: 600;
+        font-family: "Roboto", Arial, sans-serif;
+      }
+      #convenerBox {
+        justify-content: center;
+      }
+      .workshop-slot-main {
+        width: 320px;
+      }
+      .workshop-slot-main img {
+        width: 160px;
+        height: 160px;
+      }
+
+      /* LinkedIn Square Button - Full Cover, No White Box */
+      .profile-link {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        z-index: 10;
+        overflow: hidden;
+        box-shadow: none;
+        transition: none;
+      }
+      .profile-link svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        pointer-events: none;
+      }
+
+      .social-row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 34px;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        flex-shrink: 0;
+      }
+      .social-row a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #222;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        transition: background 0.25s, transform 0.22s;
+        cursor: pointer;
+      }
+      .social-row a:hover {
+        background: #c4beb4;
+        transform: scale(1.12);
+      }
+      .social-row img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+        filter: grayscale(100%) brightness(1.2)
+          drop-shadow(0 2px 8px rgba(255, 255, 255, 0.9));
+        transition: filter 0.25s;
+        display: block;
+      }
+      .social-row a:hover img {
+        filter: none;
+      }
+
+      footer {
+        background: rgba(20, 20, 20, 0.95);
+        padding: 20px 0 12px 0;
+        text-align: center;
+        color: #fff;
+        border-top: 1px solid #333;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1rem;
+        user-select: none;
+        flex-shrink: 0;
+        letter-spacing: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vanta-bg"></div>
+
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Primary Navigation">
+        <a href="index.html" class="brand" aria-label="Homepage">
+          <img src="images/iste logo 2.jpg" alt="Club Logo" class="logo" />
+          <span class="site-title">ISTE PESCE</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="event.html">Event</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Student Chapters</a>
+            <ul class="dropdown-menu">
+              <li><a href="istewings.html">ISTE WINGS</a></li>
+              <li><a href="istearcs.html">ISTE ARCS</a></li>
+            </ul>
+          </li>
+          <li><a href="our_team.html">Our Team</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+        </ul>
+        <div
+          class="menu-icon"
+          id="menu-icon"
+          role="button"
+          aria-label="Toggle menu"
+          aria-pressed="false"
+          aria-controls="nav-links"
+          tabindex="0"
+        >
+          <span id="hide_1"></span>
+          <span id="rotate_1"></span>
+          <span id="rotate_2"></span>
+          <span id="hide_2"></span>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <h1 id="main">Faculty President</h1>
+      <section class="workshops-main" id="convenerBox">
+        <div class="workshop-slot-main">
+          <img
+            src="https://picsum.photos/seed/faculty/200/200"
+            alt="Faculty President"
+          />
+          <h3>Mr. Nayaka S R</h3>
+          <p>Assistant Professor<br />Dept. of Mathematics</p>
+        </div>
+      </section>
+
+      <h1 id="head">Core Team</h1>
+      <section class="workshops">
+        <!-- Example member -->
+        <div class="workshop-slot">
+          <img
+            src="https://picsum.photos/seed/mahantesh/200/200"
+            alt="Team Member"
+          />
+          <a
+            class="profile-link"
+            href="https://www.linkedin.com/in/your-linkedin-username"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View LinkedIn Profile"
+          >
+            <!-- Full-cover square LinkedIn logo, no white background -->
+            <svg viewBox="0 0 448 448">
+              <rect width="448" height="448" fill="#0077B5" />
+              <path
+                d="M120 184h56v144h-56zm28-72a28 28 0 1 1 0 56 28 28 0 1 1 0-56m196 80c-26 0-38 14-44 24v-20h-56v144h56v-76c0-20 10-36 31-36s33 16 33 38v74h56V252c0-41-22-60-58-60z"
+                fill="#fff"
+              />
+            </svg>
+          </a>
+          <h3>Mahantesh P</h3>
+          <p>President</p>
+        </div>
+        <!-- ...other members... -->
+      </section>
+    </main>
+
+    <div class="social-row" aria-label="Social media links">
+      <a
+        href="https://www.instagram.com/pesce.iste/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+        class="social-link"
+      >
+        <img src="images/instalogo.png" alt="Instagram" />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/iste-pesce-054b01328"
+        target="_blank"
+        rel="noopener"
+        aria-label="LinkedIn"
+        class="social-link"
+      >
+        <img src="images/linkedinlogo.png" alt="LinkedIn" />
+      </a>
+      <a
+        href="mailto:your-email@gmail.com"
+        target="_blank"
+        rel="noopener"
+        aria-label="Email"
+        class="social-link"
+      >
+        <img src="images/maillogo.png" alt="Email" />
+      </a>
+    </div>
+
+    <footer role="contentinfo">
+      <p>&copy; 2025 ISTE PESCE. All rights reserved.</p>
+    </footer>
+
+    <!-- Vanta.js scripts for BIRDS effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+    <script>
+      VANTA.BIRDS({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        backgroundColor: 0x0,
+        color1: 0xc4beb4,
+        color2: 0x888899,
+        birdSize: 1.2,
+        wingSpan: 25.0,
+        speedLimit: 4.0,
+        separation: 20.0,
+        alignment: 20.0,
+        cohesion: 20.0,
+        quantity: 3.0,
+      });
+    </script>
+
+    <!-- Hamburger menu toggle script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuIcon = document.getElementById("menu-icon");
+        const navLinks = document.getElementById("nav-links");
+        const rotate_1 = document.getElementById("rotate_1");
+        const rotate_2 = document.getElementById("rotate_2");
+        const hide_1 = document.getElementById("hide_1");
+        const hide_2 = document.getElementById("hide_2");
+
+        menuIcon.addEventListener("click", function () {
+          navLinks.classList.toggle("open");
+
+          if (navLinks.classList.contains("open")) {
+            rotate_1.style.transform = "rotate(45deg) translate(5px, 5px)";
+            rotate_2.style.transform = "rotate(-45deg) translate(5px, -5px)";
+            hide_1.style.opacity = "0";
+            hide_2.style.opacity = "0";
+          } else {
+            rotate_1.style.transform = "rotate(0deg)";
+            rotate_2.style.transform = "rotate(0deg)";
+            hide_1.style.opacity = "1";
+            hide_2.style.opacity = "1";
+          }
+        });
+
+        menuIcon.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            menuIcon.click();
+          }
+        });
+
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          link.addEventListener("click", () => {
+            if (navLinks.classList.contains("open")) {
+              navLinks.classList.remove("open");
+              rotate_1.style.transform = "rotate(0deg)";
+              rotate_2.style.transform = "rotate(0deg)";
+              hide_1.style.opacity = "1";
+              hide_2.style.opacity = "1";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

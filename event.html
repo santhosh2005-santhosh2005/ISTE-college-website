@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ISTE Journey - Final Working Version</title>
+    <link rel="icon" href="images/iste logo.jpeg" type="image/jpeg" />
+
+    <!-- Google Fonts for Montserrat (for site title/section titles) and Poppins (main body) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #101015;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+      }
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+      header,
+      main,
+      footer {
+        position: relative;
+        background: transparent;
+      }
+      .navbar {
+        background: rgba(23, 23, 23, 0.85);
+        backdrop-filter: blur(10px);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        width: calc(100% - 60px);
+        font-family: "Poppins", sans-serif;
+        z-index: 1000;
+        transition: background 0.3s;
+      }
+      .navbar:hover {
+        background: rgba(44, 44, 44, 0.9);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .logo {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        background: #fff;
+        object-fit: cover;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.09);
+        border: 2.5px solid #c4beb4;
+        transition: transform 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .logo:hover {
+        transform: scale(1.1);
+      }
+      .site-title {
+        font-family: "Montserrat", Arial, "Helvetica Neue", Helvetica,
+          sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: #0576b9;
+        letter-spacing: 1.2px;
+        white-space: nowrap;
+        text-shadow: 0 2px 14px rgba(5, 118, 185, 0.08);
+        user-select: none;
+        margin-top: 2px;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        transition: max-height 0.3s ease-out;
+      }
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: color 0.3s;
+        font-weight: bold;
+      }
+      .nav-links a:hover {
+        color: #c4beb4;
+        font-size: 1.5rem;
+      }
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-toggle::after {
+        content: "";
+      }
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        background: #222;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        top: 100%;
+        left: 0;
+        width: 200px;
+        z-index: 1000;
+      }
+      .dropdown-menu li {
+        padding: 10px 15px;
+      }
+      .dropdown-menu a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        z-index: 1000;
+      }
+      .dropdown-menu a:hover {
+        background: #c4beb4;
+        color: #222 !important;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .journey-title-box {
+        padding-top: 110px;
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      .journey-title {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 3.2rem;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 0 12px rgba(196, 190, 180, 0.42),
+          0 0 20px rgba(196, 190, 180, 0.23);
+      }
+      .section-block {
+        width: 94%;
+        max-width: 1200px;
+        margin: 0 auto 52px auto;
+      }
+      .event-section-title {
+        font-family: "Montserrat", Arial, "Helvetica Neue", Helvetica,
+          sans-serif;
+        font-size: 2.05rem;
+        color: #c4beb4;
+        letter-spacing: 1.4px;
+        font-weight: 800;
+        margin: 2.7em 0 1.1em 0;
+        text-align: left;
+        text-shadow: 0 2px 12px #0009;
+        position: relative;
+      }
+      .event-section-title.highlight {
+        color: #0576b9;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-left: 6px solid #0576b9;
+        padding-left: 18px;
+      }
+      .event-section-title.brand {
+        color: #faed31;
+        letter-spacing: 2.2px;
+        text-transform: uppercase;
+        border-left: 6px solid #faed31;
+        padding-left: 18px;
+      }
+      .event-section-title:not(.brand):after,
+      .event-section-title:not(.highlight):after {
+        content: "";
+        display: block;
+        margin-top: 8px;
+        margin-left: 0;
+        width: 36px;
+        height: 3px;
+        background: #c4beb4;
+        border-radius: 4px;
+      }
+      .event-section-title.highlight:after {
+        background: #0576b9;
+      }
+      .event-section-title.brand:after {
+        background: #faed31;
+      }
+      .event-poster-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 32px 30px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+      .event-card {
+        background: linear-gradient(
+          110deg,
+          rgba(25, 25, 25, 0.96) 75%,
+          #232428 100%
+        );
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 18px 2px rgba(35, 35, 32, 0.38);
+        border: 1.5px solid #262829;
+        transition: box-shadow 0.22s, transform 0.23s, border 0.18s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-height: 370px;
+        cursor: pointer;
+      }
+      .event-card:hover,
+      .event-card:focus-within {
+        box-shadow: 0 8px 32px 6px #c4beb450, 0 4px 12px 2px #ccc2b725;
+        border: 1.7px solid #c4beb4;
+        transform: translateY(-7px) scale(1.025);
+        z-index: 5;
+      }
+      .event-section-title {
+        margin-bottom: 26px;
+      }
+      .event-poster-img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        background: #353651;
+        min-height: 148px;
+        max-height: 202px;
+        border-bottom: 1px solid #c4beb454;
+        display: block;
+      }
+      .event-info {
+        padding: 18px 21px 15px 21px;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      .event-year {
+        font-family: "Poppins", sans-serif;
+        color: #c4beb4;
+        font-size: 0.98rem;
+        letter-spacing: 2px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .event-title {
+        color: #fff;
+        font-size: 1.18rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+        font-family: "Poppins", sans-serif;
+        line-height: 1.18;
+        text-shadow: 0 1px 7px #101011aa;
+      }
+      .event-desc {
+        font-size: 1.01rem;
+        font-weight: 500;
+        line-height: 1.48;
+        color: #e9e9e9;
+        margin-top: 2px;
+        font-family: "Poppins", sans-serif;
+      }
+      /* Uploading Soon matte glass style */
+      .uploading-soon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 190px;
+        margin: 35px 0 15px 0;
+      }
+      .uploading-soon-matte {
+        min-width: 245px;
+        max-width: 410px;
+        width: 98vw;
+        padding: 32px 18px 22px 18px;
+        border-radius: 20px;
+        background: rgba(12, 18, 32, 0.76);
+        border: 1.7px solid rgba(196, 190, 180, 0.14);
+        box-shadow: 0 4px 22px 0 rgba(25, 25, 35, 0.24) inset,
+          0 0 0 1px #36374733;
+        backdrop-filter: blur(7px) brightness(1.05);
+        text-align: center;
+        position: relative;
+      }
+      .uploading-soon-fadeicon {
+        font-size: 2.5rem;
+        opacity: 0.27;
+        filter: blur(1px) brightness(1.13);
+        display: block;
+        margin-bottom: 11px;
+        user-select: none;
+      }
+      .uploading-soon-head {
+        font-family: "Montserrat", Arial, sans-serif;
+        color: #e6de83;
+        font-size: 1.18rem;
+        font-weight: 700;
+        text-shadow: 0 1px 8px #23242888;
+        letter-spacing: 0.09em;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .uploading-soon-detail {
+        color: #b9b9b9;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.99rem;
+        max-width: 320px;
+        margin: 0 auto;
+        line-height: 1.57;
+        letter-spacing: 0.01em;
+        text-shadow: none;
+      }
+      @media (max-width: 900px) {
+        .event-info {
+          padding: 13px 10px 13px 13px;
+        }
+        .event-title {
+          font-size: 1.06rem;
+        }
+        .event-poster-img {
+          min-height: 112px;
+        }
+        .section-block {
+          width: 98%;
+        }
+      }
+      @media (max-width: 520px) {
+        .event-poster-grid {
+          grid-template-columns: 1fr;
+        }
+        .navbar {
+          padding: 15px 5vw;
+          width: 90vw;
+        }
+        .site-title {
+          font-size: 0.95rem;
+        }
+        .event-section-title {
+          font-size: 1.11rem;
+        }
+        .uploading-soon-matte {
+          padding: 18px 9px 13px 9px;
+        }
+        .uploading-soon-fadeicon {
+          font-size: 1.49rem;
+          margin-bottom: 6px;
+        }
+        .uploading-soon-head {
+          font-size: 1rem;
+        }
+        .uploading-soon-detail {
+          font-size: 0.85rem;
+        }
+      }
+      footer {
+        background: #111;
+        padding: 30px 0;
+        text-align: center;
+        border-top: 1px solid #222;
+        user-select: none;
+        font-family: "Poppins", sans-serif;
+        color: #ccc;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 12px;
+      }
+      .social-link {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        transition: transform 0.3s ease;
+      }
+      .social-link:hover {
+        transform: translateY(-5px) scale(1.12);
+      }
+      .social-link img {
+        width: 100%;
+        height: auto;
+        filter: grayscale(100%) brightness(2);
+        transition: filter 0.3s ease;
+      }
+      .social-link:hover img {
+        filter: grayscale(0%) brightness(1);
+      }
+      .footer-text {
+        font-size: 1rem;
+        color: #ccc;
+        margin: 0;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vanta-bg"></div>
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Primary Navigation">
+        <a href="index.html" class="brand" aria-label="Homepage">
+          <img src="images/iste logo 2.jpg" alt="Club Logo" class="logo" />
+          <span class="site-title">ISTE PESCE</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="event.html">Event</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Student Chapters</a>
+            <ul class="dropdown-menu">
+              <li><a href="istewings.html">ISTE WINGS</a></li>
+              <li><a href="istearcs.html">ISTE ARCS</a></li>
+            </ul>
+          </li>
+          <li><a href="our_team.html">Our Team</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+        </ul>
+        <div class="menu-icon" id="menu-icon">
+          <span id="hide_1"></span>
+          <span id="rotate_1"></span>
+          <span id="rotate_2"></span>
+          <span id="hide_2"></span>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="journey-title-box">
+        <div class="journey-title">ISTE JOURNEY SO FAR</div>
+      </div>
+      <div class="section-block">
+        <div class="event-section-title highlight">
+          ISTE Convention
+          <span
+            style="
+              font-size: 0.7em;
+              font-weight: 600;
+              color: #fff;
+              vertical-align: middle;
+            "
+            >(State-wide Summit)</span
+          >
+        </div>
+        <div class="event-poster-grid">
+          <div class="event-card">
+            <img src="" class="event-poster-img" alt="ISTE Convention 19th" />
+            <div class="event-info">
+              <div class="event-year">2K23</div>
+              <div class="event-title">19TH ISTE CONVENTION</div>
+              <div class="event-desc">
+                State-level technical mega-event! Hack.MCE 3.0, Gameathon,
+                expert talks, and networking for tech enthusiasts across
+                Karnataka.
+              </div>
+            </div>
+          </div>
+          <div class="event-card">
+            <img src="" class="event-poster-img" alt="ISTE Convention 18th" />
+            <div class="event-info">
+              <div class="event-year">2K22</div>
+              <div class="event-title">18TH ISTE CONVENTION</div>
+              <div class="event-desc">
+                Workshops, contests, lectures, and inter-college
+                collaboration—our crown jewel event recognized across the
+                institution!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="event-section-title brand">
+          Open Mic
+          <span style="font-size: 0.8em; color: #fff; font-weight: 600"
+            >(Flagship Cultural Series)</span
+          >
+        </div>
+        <div class="event-poster-grid">
+          <div class="event-card">
+            <img src="" class="event-poster-img" alt="Open Mic 6.0" />
+            <div class="event-info">
+              <div class="event-year">2K24</div>
+              <div class="event-title">OPEN MIC 6.0</div>
+              <div class="event-desc">
+                ISTE’s celebrated open-mic fest: where stories, music, and
+                poetry meet. The flagship platform for talent and creative
+                expression!
+              </div>
+            </div>
+          </div>
+          <div class="event-card">
+            <img src="" class="event-poster-img" alt="Open Mic 5.0" />
+            <div class="event-info">
+              <div class="event-year">2K23</div>
+              <div class="event-title">OPEN MIC 5.0</div>
+              <div class="event-desc">
+                Performers from every branch. Comedy, spoken word, music, and
+                more—our annual creative flagship keeps growing!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="event-section-title">Gameathon</div>
+        <div class="event-poster-grid">
+          <div class="event-card">
+            <img src="" class="event-poster-img" alt="Gameathon 2023" />
+            <div class="event-info">
+              <div class="event-year">2K23</div>
+              <div class="event-title">Gameathon '23</div>
+              <div class="event-desc">
+                Inter-branch eSports extravaganza! Competition in Valorant,
+                BGMI, Chess and more—energy and strategy for all.
+              </div>
+            </div>
+          </div>
+          <div class="event-card">
+            <img src="" class="event-poster-img" alt="Gameathon 2022" />
+            <div class="event-info">
+              <div class="event-year">2K22</div>
+              <div class="event-title">Gameathon '22</div>
+              <div class="event-desc">
+                New games, more teams, intense playoffs—ISTE PESCE’s home for
+                gaming and tech fun!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="event-section-title">Workshops & Tech Fests</div>
+        <div class="event-poster-grid">
+          <div class="event-card">
+            <img src="" class="event-poster-img" alt="AI Bootcamp" />
+            <div class="event-info">
+              <div class="event-year">2K24</div>
+              <div class="event-title">AI Bootcamp</div>
+              <div class="event-desc">
+                Dive into Artificial Intelligence! Hands-on, mentor-led sessions
+                for all years—no prior experience required.
+              </div>
+            </div>
+          </div>
+          <div class="event-card">
+            <img src="" class="event-poster-img" alt="Circuitmania" />
+            <div class="event-info">
+              <div class="event-year">2K22</div>
+              <div class="event-title">Circuitmania</div>
+              <div class="event-desc">
+                Lightning-fast circuit design battles! Engineering brains meet
+                quick fingers for glory and learning.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="event-section-title">Other Highlight Events</div>
+        <div
+          class="uploading-soon-container"
+          aria-label="More events uploading soon"
+        >
+          <div class="uploading-soon-matte">
+            <span class="uploading-soon-fadeicon">🕑</span>
+            <span class="uploading-soon-head">Uploading Soon</span>
+            <div class="uploading-soon-detail">
+              We’re preparing more <b>highlight moments</b>! Watch this space,
+              or check our socials for latest ISTE updates.
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="social-icons" aria-label="Social media links">
+        <a
+          href="https://www.instagram.com/pesce-iste/"
+          target="_blank"
+          class="social-link"
+          aria-label="Instagram"
+        >
+          <img src="images/instalogo.png" alt="Instagram" />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/iste-pesce/"
+          target="_blank"
+          class="social-link"
+          aria-label="LinkedIn"
+        >
+          <img src="images/linkedinlogo.png" alt="LinkedIn" />
+        </a>
+        <a
+          href="mailto:your-email@gmail.com"
+          target="_blank"
+          class="social-link"
+          aria-label="Email"
+        >
+          <img src="images/maillogo.png" alt="Gmail" />
+        </a>
+      </div>
+      <p class="footer-text">&copy; 2025 ISTE PESCE. All rights reserved.</p>
+    </footer>
+
+    <!-- Vanta.js NET effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script>
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0xc4beb4,
+        backgroundColor: 0x101015,
+        points: 12.0,
+        maxDistance: 20.0,
+        spacing: 16.0,
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuIcon = document.getElementById("menu-icon");
+        const navLinks = document.getElementById("nav-links");
+        menuIcon.addEventListener("click", function () {
+          navLinks.classList.toggle("show");
+        });
+      });
+    </script>
+  </body>
+</html>

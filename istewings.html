@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ISTE WINGS</title>
+    <link rel="icon" href="images/iste logo.jpeg" type="image/jpeg" />
+    <!-- Google Fonts for Montserrat (headings) and Roboto (body, nav) -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:700,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-family: "Roboto", sans-serif;
+        background: #000;
+        color: #fff;
+        position: relative;
+        overflow-x: hidden;
+      }
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+      }
+      /* Navbar */
+      .navbar {
+        background: #171717;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        position: relative;
+        z-index: 2;
+        flex-shrink: 0;
+      }
+      .navbar .logo {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #fff;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.09);
+        border: 2.5px solid #c4beb4;
+        transition: transform 0.3s;
+        display: inline-block;
+        margin-right: 16px;
+      }
+      .navbar .logo:hover {
+        transform: scale(1.1);
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+      }
+      .nav-links li {
+        position: relative;
+      }
+      .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        transition: color 0.3s;
+        padding: 7px 0;
+        display: inline-block;
+      }
+      .nav-links a:hover {
+        color: #c4beb4;
+      }
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        background: rgba(34, 34, 34, 0.96);
+        backdrop-filter: blur(10px);
+        list-style: none;
+        padding: 10px 0;
+        margin-top: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.28);
+        top: 100%;
+        left: 0;
+        width: 200px;
+        z-index: 1100;
+        overflow: hidden;
+      }
+      .dropdown-menu li {
+        padding: 0;
+      }
+      .dropdown-menu a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: 12px 20px;
+        transition: all 0.3s;
+      }
+      .dropdown-menu a:hover {
+        background: #c4beb4;
+        color: #111 !important;
+        padding-left: 25px;
+      }
+      .dropdown:hover .dropdown-menu,
+      .dropdown:focus-within .dropdown-menu {
+        display: block;
+      }
+
+      /* Modal - Centered, glowing text only, no bg */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2500;
+        pointer-events: none;
+      }
+      .modal-content {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        pointer-events: auto;
+      }
+      .modal-content h1 {
+        font-family: "Georgia", serif;
+        font-size: 3.4rem;
+        color: #fff;
+        letter-spacing: 2.5px;
+        font-weight: bold;
+        text-shadow: 0 0 7px #e2c3ff, 0 0 32px #b88eee, 0 0 3px #a570ec;
+        filter: drop-shadow(0 2px 14px #ce8aff);
+        margin-bottom: 18px;
+      }
+      .modal-content p {
+        font-family: "Roboto", Arial, sans-serif;
+        font-size: 1.45rem;
+        color: #f3eaff;
+        text-shadow: 0 0 8px #cfa1ff66, 0 0 2px #39265c;
+        font-weight: 500;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* Social at Bottom */
+      .bottom-section {
+        flex-shrink: 0;
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: 0;
+      }
+      .social-row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 34px;
+        margin-bottom: 10px;
+        margin-top: 0;
+      }
+      .social-row a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #222;
+        box-shadow: 0 2px 6px #111a;
+        transition: background 0.25s, transform 0.22s;
+      }
+      .social-row a:hover {
+        background: #c4beb4;
+        transform: scale(1.12);
+      }
+      .social-row img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+        display: block;
+        filter: grayscale(100%) brightness(1.2) drop-shadow(0 2px 8px #fff6);
+        transition: filter 0.25s;
+      }
+      .social-row a:hover img {
+        filter: none;
+      }
+
+      /* Footer, centered, always at bottom */
+      .footer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 18px 16px 12px 16px;
+        background: transparent;
+        color: #fff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1rem;
+        text-align: center;
+        box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.07);
+      }
+      .footer-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      .footer-brand {
+        text-align: center;
+        width: 100%;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .site-title {
+        font-family: "Montserrat", Arial, "Helvetica Neue", Helvetica,
+          sans-serif;
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: #0576b9; /* ISTE blue */
+        margin-left: 14px;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        text-shadow: 0 2px 14px rgba(5, 118, 185, 0.1); /* optional glow */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vanta-bg"></div>
+
+    <header>
+      <nav class="navbar">
+        <a href="index.html" class="brand">
+          <img src="images/iste logo 2.jpg" alt="Club Logo" class="logo" />
+          <span class="site-title">ISTE PESCE</span>
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="event.html">Event</a></li>
+          <li class="dropdown">
+            <a
+              href="#"
+              class="dropdown-toggle"
+              aria-haspopup="true"
+              aria-expanded="false"
+              >Student Chapters</a
+            >
+            <ul class="dropdown-menu" aria-label="submenu">
+              <li><a href="istewings.html">ISTE WINGS</a></li>
+              <li><a href="istearcs.html">ISTE ARCS</a></li>
+            </ul>
+          </li>
+          <li><a href="our_team.html">Our Team</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Coming Soon Modal (always centered, non-blocking) -->
+    <div
+      class="modal-overlay"
+      tabindex="0"
+      aria-modal="true"
+      role="dialog"
+      aria-label="Coming Soon"
+    >
+      <div class="modal-content">
+        <h1>Coming Soon</h1>
+        <p>
+          Exciting opportunities and events are on their way.<br />Stay tuned
+          for updates!
+        </p>
+      </div>
+    </div>
+
+    <main style="flex-grow: 1; padding-top: 70px">
+      <!-- Insert your real content here if needed -->
+    </main>
+
+    <div class="bottom-section">
+      <div class="social-row">
+        <a
+          href="https://www.instagram.com/pesce.iste/"
+          target="_blank"
+          aria-label="Instagram"
+        >
+          <img src="images/instalogo.png" alt="Instagram" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/iste-pesce-054b01328"
+          target="_blank"
+          aria-label="LinkedIn"
+        >
+          <img src="images/linkedinlogo.png" alt="LinkedIn" />
+        </a>
+        <a href="mailto:@gmail.com" target="_blank" aria-label="Mail">
+          <img src="images/maillogo.png" alt="Gmail" />
+        </a>
+      </div>
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-brand">
+            <p>&copy; 2025 ISTE PESCE. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Vanta.js globe effect script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script>
+      VANTA.GLOBE({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0xc4beb4,
+        backgroundColor: 0x0,
+      });
+    </script>
+  </body>
+</html>
